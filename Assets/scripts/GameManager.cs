@@ -17,11 +17,14 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int scoreMultiplier = 0;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         SetupNewLevel();
         gameWinScreen.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void UpdateScoreText()=> scoreText.text = score.ToString();
@@ -65,6 +68,8 @@ public class GameManager : MonoBehaviour
     public void ShowGameWinScreen(){
         gameWinScreen.SetActive(true);
         finalScore.text = score.ToString();
+        audioSource.Play();
+
     }
 
     public void Replay(){
